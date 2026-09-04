@@ -52,6 +52,10 @@ Also: a [glossary](appendix/glossary.md), [cheat sheets](appendix/cheatsheets.md
 and [worked answers](appendix/check-yourself-answers.md) to every topic's
 "Check yourself" questions.
 
+Prefer to see it before you read it? [**Python, By Hand**](by-hand.html) traces
+all 43 topics one line at a time, in a hand-drawn, step-by-step style —
+memory frames, heap objects, and call stacks drawn out for each mechanism.
+
 ## Start here
 
 1. Read [How to use this site](how-to-use.md) (2 minutes).
