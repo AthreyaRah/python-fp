@@ -132,29 +132,31 @@ string yourself for simple cases, or add the third-party `tomli-w` / `tomlkit`
 # ======================================================================================
 
 def s4_build() -> bool:
-    # Same import name and distribution name -> straightforward.
-    return bool(metadata.version("pytest"))
+    # `_pytest` is the import package; the DISTRIBUTION that ships it is `pytest`.
+    dist = metadata.packages_distributions().get("_pytest", ["pytest"])[0]
+    return bool(metadata.version(dist))
 
 
 def s4_break() -> str:
     try:
-        # `import yaml`, but the distribution pip installed is "PyYAML".
-        metadata.version("yaml")
+        # Querying by the IMPORT name of a package whose distribution differs.
+        # (In the wild: `import yaml` <- `PyYAML`, `import cv2` <- `opencv-python`.)
+        metadata.version("_pytest")
     except metadata.PackageNotFoundError as exc:
         return f"{type(exc).__name__}: {exc}"
     return "no error (unexpected)"
 
 
 def s4_fix() -> bool:
-    dists = metadata.packages_distributions().get("yaml", ["PyYAML"])
-    return bool(metadata.version(dists[0]))
+    dist = metadata.packages_distributions().get("_pytest", ["pytest"])[0]
+    return bool(metadata.version(dist))
 
 
 S4_WHY = """
 The name you `import` and the name pip installs are independent: `import yaml`
 comes from `PyYAML`, `import bs4` from `beautifulsoup4`, `import cv2` from
-`opencv-python`. `importlib.metadata.version("...")` wants the DISTRIBUTION name
-(and it is normalized: dashes, not underscores). Use
+`opencv-python`, `import _pytest` from `pytest`. `importlib.metadata.version(...)`
+wants the DISTRIBUTION name (normalized: dashes, not underscores). Use
 `importlib.metadata.packages_distributions()` to map an import name to its
 distribution.
 """

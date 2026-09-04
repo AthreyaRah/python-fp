@@ -66,14 +66,14 @@ def parse_pyproject() -> None:
 
 
 def query_installed() -> None:
-    # These are installed in this project's environment.
-    for dist in ("pytest", "mkdocs-material"):
+    for dist in ("pytest", "hypothesis", "definitely-not-installed"):
         try:
-            print(f"{dist:16} version {metadata.version(dist)}")
+            print(f"{dist:24} version {metadata.version(dist)}")
         except metadata.PackageNotFoundError:
-            print(f"{dist:16} not installed")
+            print(f"{dist:24} not installed")
     mapping = metadata.packages_distributions()
-    print("import 'yaml' comes from distribution:", mapping.get("yaml", "<none installed>"))
+    # `import _pytest` is shipped by the `pytest` distribution.
+    print("import '_pytest' comes from:", mapping.get("_pytest", ["<none>"]))
 
 
 def main() -> None:

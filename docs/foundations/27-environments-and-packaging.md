@@ -98,15 +98,19 @@ python code/foundations/27_environments_and_packaging/scenarios.py
 ### 4 — Import name vs distribution name
 
 !!! example "🔨 Build"
-    `metadata.version("pytest")` — import and distribution names match.
+    Map the import name to its distribution first:
+    `packages_distributions()["_pytest"]` → `["pytest"]`, then
+    `metadata.version("pytest")`.
 
 !!! failure "💥 Break"
-    `metadata.version("yaml")` → `PackageNotFoundError`. The distribution is
-    `PyYAML`.
+    `metadata.version("_pytest")` → `PackageNotFoundError`. `_pytest` is an
+    *import* package; the *distribution* that ships it is `pytest`. (In the wild:
+    `import yaml` ← `PyYAML`, `import cv2` ← `opencv-python`, `import PIL` ←
+    `Pillow`.)
 
 !!! success "🔧 Fix"
-    `importlib.metadata.packages_distributions()["yaml"]` → `["PyYAML"]`, then
-    query that.
+    `importlib.metadata.packages_distributions()` to translate, then query the
+    distribution name.
 
 !!! quote "🧠 Why it behaved that way"
     The name you import and the name pip installs are independent metadata.

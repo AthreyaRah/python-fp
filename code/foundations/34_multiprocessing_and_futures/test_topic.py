@@ -33,7 +33,9 @@ def test_demo_runs():
     out = buf.getvalue()
     assert "serial   : [1, 4, 9, 16]" in out
     assert "processes: [1, 4, 9, 16]" in out
-    assert "worker exception re-raised on .result():" in out and "division by zero" in out
+    # message wording varies: "division by zero" (3.14) vs
+    # "integer division or modulo by zero" (<= 3.13)
+    assert "worker exception re-raised on .result():" in out and "by zero" in out
 
 
 @_SKIP

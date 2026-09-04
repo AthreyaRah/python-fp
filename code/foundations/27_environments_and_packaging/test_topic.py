@@ -27,7 +27,8 @@ def test_demo_runs():
     out = buf.getvalue()
     assert "name/version   : demo-app 0.2.0" in out
     assert "dependencies   : ['httpx>=0.27', 'rich']" in out
-    assert "pytest           version" in out
+    assert "definitely-not-installed not installed" in out
+    assert "import '_pytest' comes from: ['pytest']" in out
 
 
 def test_scenarios_run():
