@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+site/
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.DS_Store
+_site/
+# Scratch data that demos generate at runtime.
+_generated/
+*.sqlite3

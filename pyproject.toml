@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-fp"
+version = "0.1.0"
+description = "Python from First Principles - the pure-Python common core, taught from first principles with runnable, self-contained code."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+# Every demo and scenario uses the standard library only. There are no runtime
+# dependencies - the extras below are just tooling.
+dependencies = []
+
+[project.optional-dependencies]
+docs = [
+    "mkdocs-material>=9.5",
+    "pymdown-extensions>=10.7",
+]
+test = [
+    "pytest>=8.0",
+    "hypothesis>=6.100",
+    "tzdata>=2024.1",       # IANA time-zone database for the dates & times topic
+]
+lint = [
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+dev = [
+    "python-fp[docs,test,lint]",
+]
+
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "code"]
+python_files = ["test_*.py"]
+addopts = "-ra --import-mode=importlib"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+# A deliberately small, high-signal set: import hygiene, undefined names,
+# unused imports, modern syntax. The teaching snippets show plenty of
+# "anti-patterns" on purpose, so the opinionated rule groups stay off.
+select = ["E4", "E7", "E9", "F", "I", "W", "UP"]
+ignore = [
+    "E402",    # module import not at top - the demos sys.path.insert first
+    "E701", "E702",  # `a; b` one-liners are used for brevity in demos
+    "E731",    # `x = lambda:` is shown for teaching contrast
+    "F841",    # assigned-but-unused - scenario setup / illustrative
+    "UP015",   # redundant open mode - explicit "r" is clearer when teaching
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Scenario files DEMONSTRATE anti-patterns; don't lint the point away.
+"code/foundations/*/scenarios.py" = ["F811", "F821", "F823", "UP", "B", "E721", "E731"]
+"code/foundations/*/demo.py" = ["F811", "UP", "B"]
+"code/_harness/dummydata.py" = ["UP"]
+
+[tool.mypy]
+python_version = "3.11"
+# Type-check the reusable infrastructure strictly; the teaching snippets are
+# deliberately loose and dynamic.
+files = ["code/_harness", "scripts"]
+warn_unused_ignores = true
+warn_redundant_casts = true
+check_untyped_defs = true

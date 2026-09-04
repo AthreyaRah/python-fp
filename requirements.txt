@@ -1,0 +1,3 @@
+# Everything you need to run the code, the tests, and the docs site.
+# All topic code is standard-library only; this only installs tooling.
+-e .[dev]

@@ -1,0 +1,142 @@
+site_name: Python from First Principles
+site_description: >-
+  The pure-Python common core, taught from first principles. Every topic: the
+  mechanism from zero, a runnable snippet that makes its own data, and four
+  Build -> Break -> Fix -> Understand scenarios.
+site_url: https://athreyarah.github.io/python-fp/
+repo_url: https://github.com/AthreyaRah/python-fp
+repo_name: AthreyaRah/python-fp
+edit_uri: edit/main/docs/
+copyright: MIT licensed. Educational reference.
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  favicon: assets/favicon.svg
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/console
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.snippets:
+      base_path: [.]
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.caret
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AthreyaRah/python-fp
+
+nav:
+  - Home: index.md
+  - How to use this site: how-to-use.md
+  - Foundations:
+      - foundations/index.md
+      - foundations/01-execution-and-import-model.md
+      - foundations/02-names-objects-references.md
+      - foundations/03-mutability-and-the-default-arg-trap.md
+      - foundations/04-the-data-model-and-dunders.md
+      - foundations/05-numeric-types.md
+      - foundations/06-strings-bytes-unicode.md
+      - foundations/07-builtin-containers-and-complexity.md
+      - foundations/08-the-collections-module.md
+      - foundations/09-comprehensions.md
+      - foundations/10-iterators-and-the-iterator-protocol.md
+      - foundations/11-generators-and-yield-from.md
+      - foundations/12-functions-args-closures.md
+      - foundations/13-decorators.md
+      - foundations/14-functools.md
+      - foundations/15-itertools.md
+      - foundations/16-scope-legb.md
+      - foundations/17-exceptions.md
+      - foundations/18-context-managers.md
+      - foundations/19-classes-and-oop.md
+      - foundations/20-inheritance-and-mro.md
+      - foundations/21-dataclasses-and-slots.md
+      - foundations/22-abcs-protocols-duck-typing.md
+      - foundations/23-type-hints-and-typing.md
+      - foundations/24-descriptors.md
+      - foundations/25-metaclasses.md
+      - foundations/26-modules-packages-imports.md
+      - foundations/27-environments-and-packaging.md
+      - foundations/28-file-io-and-pathlib.md
+      - foundations/29-serialization-stdlib.md
+      - foundations/30-dates-and-times.md
+      - foundations/31-floating-point-and-random.md
+      - foundations/32-regex.md
+      - foundations/33-gil-threads-races.md
+      - foundations/34-multiprocessing-and-futures.md
+      - foundations/35-asyncio.md
+      - foundations/36-memory-model-and-weakref.md
+      - foundations/37-profiling-and-dis.md
+      - foundations/38-testing-with-pytest.md
+      - foundations/39-logging.md
+      - foundations/40-stdlib-toolkit.md
+      - foundations/41-copy-shallow-vs-deep.md
+      - foundations/42-match-statement.md
+      - foundations/43-idioms-and-anti-patterns.md
+  - Appendix:
+      - appendix/glossary.md
+      - appendix/cheatsheets.md
+      - "Check yourself: answers": appendix/check-yourself-answers.md
